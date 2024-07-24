@@ -9,7 +9,7 @@ async function newTicket(req, res) {
       .status(201)
       .json({ message: "ticket created successfully", ticket: createTicket });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function getTicket(req, res) {
@@ -17,7 +17,7 @@ async function getTicket(req, res) {
     const tickets = await ticket.findById(req.params.id);
     res.status(200).json({ message: "ticket gotten by id", ticket: tickets });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function getAllTicket(req, res) {
@@ -27,7 +27,7 @@ async function getAllTicket(req, res) {
       .status(200)
       .json({ message: "all ticket gotten ", allTicket: allTicket });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function editTicket(req, res) {
@@ -37,7 +37,7 @@ async function editTicket(req, res) {
     });
     res.status(200).json({ message: "ticket edited", ticketEdit: edit });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function deleteTicket(req, res) {
@@ -45,7 +45,7 @@ async function deleteTicket(req, res) {
     await ticket.findByIdAndDelete(req.params.id);
     res.status(207).json({ message: "ticket deleted successfully" });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 

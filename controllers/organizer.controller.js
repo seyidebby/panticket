@@ -10,7 +10,7 @@ async function newOrganizer(req, res) {
       organize: createOrganizer,
     });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function getOrganizer(req, res) {
@@ -22,7 +22,6 @@ async function getOrganizer(req, res) {
     });
   } catch (error) {
     console.log(error);
-    //   return res.status(400).json({ message: error.details[0].message });
   }
 }
 
@@ -33,7 +32,7 @@ async function getAllOrganizers(req, res) {
       .status(200)
       .json({ message: "all organizers goteen", getorganizer: allOrganizers });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function editOrganizer(req, res) {
@@ -49,7 +48,7 @@ async function editOrganizer(req, res) {
       .status(200)
       .json({ message: "organizer edited", organizerEdit: editOrganizer });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 async function deleteOrganizer(req, res) {
@@ -57,7 +56,7 @@ async function deleteOrganizer(req, res) {
     await organizer.findByIdAndDelete(req.params.id);
     res.status(207).json({ message: "organizer deleted successfully" });
   } catch (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    console.log(error);
   }
 }
 
