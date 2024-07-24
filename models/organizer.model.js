@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const organizerschema = mongoose.Schema({
   name: { type: String, require: true },
   bio: { type: String, require: true },
-  phoneNumer: { type: Number, require: true },
+  phoneNumber: { type: Number, require: true },
   email: { type: String, require: true },
   twitter: { type: String, require: true },
   facebook: { type: String, require: true },

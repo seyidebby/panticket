@@ -2,29 +2,51 @@ const mongoose = require("mongoose");
 const ticket = require("../models/ticket.model.js");
 
 async function newTicket(req, res) {
-  const createTicket = await ticket.create(req.body);
-  await createTicket.save();
-  return res
-    .status(201)
-    .json({ message: "ticket created successfully", ticket: createTicket });
+  try {
+    const createTicket = await ticket.create(req.body);
+    await createTicket.save();
+    return res
+      .status(201)
+      .json({ message: "ticket created successfully", ticket: createTicket });
+  } catch (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 }
 async function getTicket(req, res) {
-  const tickets = await ticket.findById(req.params.id);
-  res.status(200).json({ message: "ticket gotten by id", ticket: tickets });
+  try {
+    const tickets = await ticket.findById(req.params.id);
+    res.status(200).json({ message: "ticket gotten by id", ticket: tickets });
+  } catch (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 }
 async function getAllTicket(req, res) {
-  const allTicket = await ticket.find({});
-  res.status(200).json({ message: "all ticket gotten ", allTicket: allTicket });
+  try {
+    const allTicket = await ticket.find({});
+    res
+      .status(200)
+      .json({ message: "all ticket gotten ", allTicket: allTicket });
+  } catch (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 }
 async function editTicket(req, res) {
-  const edit = await ticket.findByIdAndUpdate(req.params.id, req.body, {
-    returnDocument: "after",
-  });
-  res.status(200).json({ message: "ticket edited", ticketEdit: edit });
+  try {
+    const edit = await ticket.findByIdAndUpdate(req.params.id, req.body, {
+      returnDocument: "after",
+    });
+    res.status(200).json({ message: "ticket edited", ticketEdit: edit });
+  } catch (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 }
 async function deleteTicket(req, res) {
-  await ticket.findByIdAndDelete(req.params.id);
-  res.status(207).json({ message: "ticket deleted successfully" });
+  try {
+    await ticket.findByIdAndDelete(req.params.id);
+    res.status(207).json({ message: "ticket deleted successfully" });
+  } catch (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
 }
 
 module.exports = {

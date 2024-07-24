@@ -8,6 +8,8 @@ const eventSchema = joi.object({
   description: joi.string().required(),
   eventType: joi.string().required(),
   location: joi.string().required(),
+  tickets: joi.array().items(joi.string().required()),
+  organizer: joi.string().required(),
   isFeatured: joi.boolean().required(),
 });
 
@@ -27,6 +29,8 @@ const editEventSchema = joi.object({
   description: joi.string(),
   eventType: joi.string(),
   location: joi.string(),
+  tickets: joi.array().items(joi.string()),
+  organizer: joi.string(),
   isFeatured: joi.boolean(),
 });
 
