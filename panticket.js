@@ -69,7 +69,7 @@ server.listen(port, () => {
     .then(() => {
       console.log("panticket database connection established");
     })
-    .catch(() => {
-      throw new Error(err.message);
+    .catch((error) => {
+      throw new Error(error.message);
     });
 });
